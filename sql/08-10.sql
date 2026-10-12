@@ -69,6 +69,7 @@ alter table employee1 add column salary int, add check (salary>1);
 select *from employee1;
 desc employee1;
 
+desc employee4;
 
 -- alter table employee1 drop check employee1_chk;
 
@@ -76,14 +77,77 @@ desc employee1;
 -- check constraints
 
 
-create table employee4((EmpID int, FirstName varchar(10),
-LastName varchar(10) , EmpAGE int ,salary int, check(EmpAGE>20), primary key (EmpID));
+CREATE TABLE employee4 (
+    EmpID INT PRIMARY KEY,
+    FirstName VARCHAR(10),
+    LastName VARCHAR(10),
+    EmpAGE INT CHECK (EmpAGE > 20),
+    salary INT
+);
+ALTER TABLE employee4
+ADD CONSTRAINT chk_EmpAGE_salary2
+CHECK (EmpAGE > 20 AND salary >= 5000);
 
-alter table employee4 add constraint chk_EmpAGE_salary
-check(EmpAGE>20 and salary>= 5000);
+insert into employee4 values (1, "a", "b", 21, 25000);
+select *from employee4;
+
+create index demoindex2 on employee4(firstname, lastname);
+show indexes from employee4;
+
+
+drop index demoindex2 on employee4;
+
+create table person(
+personid int primary key not null auto_increment,
+firstname varchar(30), 
+lastname varchar(30),
+age int
+);
+
+desc person;
+
+insert into person (firstname, lastname, age) values 
+("Vansh", "Bijwani", 21), 
+("Atharv", "dugani", 20);
+
+select * from person;
 
 
 
+create database TCL;
+use TCL;
+show databases;
 
 
-insert into employee3 values ();
+create table orders(
+orderid int primary key,
+customerName varchar(30),
+status varchar(30)
+);
+
+
+set autocommit=0;
+
+begin;
+
+insert into orders values (101, "Vansh", "Pending"), (102, "Atharv", "Completed");
+savepoint sp1;
+update orders set  customerName = "Raj" where orderid = 101;
+
+truncate table orders;
+select *from orders;
+rollback;
+commit;
+
+insert into orders values (103, "Nitin", "Completed"), (104, "Kartik", "Shipped");
+
+savepoint sp2;
+
+delete from orders where orderid = 102;
+select *from orders;
+savepoint sp3;
+rollback to savepoint sp1;
+rollback to savepoint sp2;
+
+
+
