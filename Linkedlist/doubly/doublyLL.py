@@ -34,6 +34,23 @@ class LinkedList:
             if temp.next:
                 temp.next.prev = new_node
                 temp.next = new_node
+    def delete(self, data):
+        curr = self.head
+
+        while curr:
+            if curr.data == data:
+                if curr.prev:
+                    curr.prev.next = curr.next
+                else:
+                    self.head = curr.next
+
+                if curr.next:
+                    curr.next.prev = curr.prev
+
+                return
+
+            curr = curr.next
+                
         
     def printt(self):
         current = self.head
@@ -49,4 +66,7 @@ list1.append(Node(3))
 list1.append(Node(4))
 list1.printt()
 list1.insert(Node(60), 3)
+list1.printt()
+
+list1.delete(3)
 list1.printt()
