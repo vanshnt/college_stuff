@@ -149,5 +149,3 @@ savepoint sp3;
 rollback to savepoint sp1;
 rollback to savepoint sp2;
 
-
-
