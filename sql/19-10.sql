@@ -79,3 +79,12 @@ select *from employee where experience = 10 or experience = 20;
 
 select * from employee where last_name like "%a%";
 
+-- :imit operator is used to limit the no of rows in the output
+
+select *from employee order by experience limit 3;
+
+
+insert into employee values (107, 'Sunil', 'Darda', 'M', 'Intern', 'Sales', ' ', null);
+
+select * from employee;
+
