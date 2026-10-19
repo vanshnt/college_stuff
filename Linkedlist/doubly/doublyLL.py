@@ -56,8 +56,47 @@ class LinkedList:
         current = self.head
         print("List elements: ")
         while current:
-            print(current.data)
+            print(current.data, end = " ")
             current = current.next
+            
+    def occurance(self, data):
+        curr = self.head
+        count = 0
+        while curr != None:
+            if curr.data == data:
+                count += 1
+            curr = curr.next
+        return count
+    
+    def swap(self):
+        if self.head == None or self.head.next == None:
+            return
+
+        first = self.head
+        last = self.head
+
+        while last.next:
+            last = last.next
+
+        second = first.next
+        second_last = last.prev
+
+        if first.next == last:
+            first.next = None
+            first.prev = last
+            last.next = first
+            last.prev = None
+            self.head = last
+        else:
+            last.prev = None
+            last.next = second
+            second.prev = last
+
+            second_last.next = first
+            first.prev = second_last
+            first.next = None
+
+            self.head = last
             
 list1 = LinkedList()
 list1.append(Node(1))
@@ -67,6 +106,13 @@ list1.append(Node(4))
 list1.printt()
 list1.insert(Node(60), 3)
 list1.printt()
-
+print("\n___ deletion")
 list1.delete(3)
 list1.printt()
+print("\n__ occurance")
+print(list1.occurance(2))
+
+print("\n ___Swap")
+list1.swap();
+list1.printt()
+
