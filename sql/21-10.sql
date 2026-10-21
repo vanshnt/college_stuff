@@ -20,3 +20,4 @@ having total_experience >= 10 and total_experience <= 20;
 select dept, sum(experience) as total_experience
 from employee group by dept
 having total_experience >= 10 or total_experience <= 20;
+
