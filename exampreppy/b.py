@@ -82,7 +82,7 @@ def isprime(a):
                 return False
         return True
 print(isprime(5))
-print(isprime(65))
+print(isprime(3))
 # 12. Print a number pattern using nested loops
 
 n = 5
