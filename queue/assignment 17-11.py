@@ -67,7 +67,7 @@ patient.enqueue(Node(104, "Sanjana", 1))
 print("All Waiting Patients:")
 patient.display_all()
 
-print("\nNext Patient:")+63
+print("\nNext Patient:")
 patient.display_next()
 
 print("\nAfter Treatment:")
